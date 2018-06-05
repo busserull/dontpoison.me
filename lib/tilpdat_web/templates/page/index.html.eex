@@ -1,0 +1,17 @@
+<h2><%= greet() %></h2>
+<h4>Give us some feedback</h4>
+
+<%= form_for @changeset, page_path(@conn, :create), fn f -> %>
+  <div class="form-group">
+    <%= textarea f, :text, placeholder: "What's  on your mind?", class: "form-control" %>
+    <%= error_tag f, :text %>
+  </div>
+  <%= submit "Send feedback", class: "btn btn-primary" %>
+<% end %>
+
+<%= for post <- @posts do %>
+  <div class="jumbotron">
+    <p><%= post.text %></p>
+    <i>Posted <%= pretty_print_data(post.updated_at) %></i>
+  </div>
+<% end %>
